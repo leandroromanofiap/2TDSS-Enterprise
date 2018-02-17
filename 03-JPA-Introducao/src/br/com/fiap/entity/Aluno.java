@@ -54,4 +54,93 @@ public class Aluno implements Serializable {
 	@Lob
 	@Column(name = "fl_foto")
 	private byte[] foto;
+	
+	public Aluno() {
+		super();
+	}
+	
+	public Aluno(String nome, String curso, Calendar dataNascimento, boolean matriculado, Periodo periodo,
+			Integer semestre, byte[] foto) {
+		super();
+		this.nome = nome;
+		this.curso = curso;
+		this.dataNascimento = dataNascimento;
+		this.matriculado = matriculado;
+		this.periodo = periodo;
+		this.semestre = semestre;
+		this.foto = foto;
+	}
+
+	public int getRm() {
+		return rm;
+	}
+
+	public void setRm(int rm) {
+		this.rm = rm;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public boolean isMatriculado() {
+		return matriculado;
+	}
+
+	public void setMatriculado(boolean matriculado) {
+		this.matriculado = matriculado;
+	}
+
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+
+	public Integer getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(Integer semestre) {
+		this.semestre = semestre;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 }
