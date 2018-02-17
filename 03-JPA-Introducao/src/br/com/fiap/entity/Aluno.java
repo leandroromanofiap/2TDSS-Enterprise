@@ -5,11 +5,17 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "T_ALUNO")
@@ -28,16 +34,24 @@ public class Aluno implements Serializable {
 	@Column(name = "ds_curso", length = 50)
 	private String curso;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "dt_nascimento", nullable = false)
 	private Calendar dataNascimento;
 
 	@Column(name = "st_matricula", nullable = false)
 	private boolean matriculado;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_periodo")
 	private Periodo periodo;
 
 	@Column(name = "nr_semestre")
 	private Integer semestre;
 
+	@Transient
+	private String token;
+
+	@Lob
+	@Column(name = "fl_foto")
+	private byte[] foto;
 }
