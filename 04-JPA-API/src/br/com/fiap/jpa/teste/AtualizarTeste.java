@@ -20,6 +20,7 @@ public class AtualizarTeste {
 		
 		em.getTransaction().begin();
 		
+		// Somente necessário quando objeto não vem do banco de dados.
 		em.merge(carro);
 		
 		em.getTransaction().commit();
