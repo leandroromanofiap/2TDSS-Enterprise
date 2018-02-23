@@ -5,6 +5,8 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,8 +37,9 @@ public class Carro implements Serializable {
 	@Column(name = "ds_placa", length = 7)
 	private String placa;
 
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "ds_tipo")
-	private int tipo;
+	private TipoCarro tipo;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "dt_fabricacao")
@@ -50,7 +53,7 @@ public class Carro implements Serializable {
 		super();
 	}
 
-	public Carro(String modelo, int ano, String placa, int tipo, Calendar fabricacao, byte[] foto) {
+	public Carro(String modelo, int ano, String placa, TipoCarro tipo, Calendar fabricacao, byte[] foto) {
 		super();
 		this.modelo = modelo;
 		this.ano = ano;
@@ -88,11 +91,11 @@ public class Carro implements Serializable {
 		this.placa = placa;
 	}
 
-	public int getTipo() {
+	public TipoCarro getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(int tipo) {
+	public void setTipo(TipoCarro tipo) {
 		this.tipo = tipo;
 	}
 
@@ -110,6 +113,11 @@ public class Carro implements Serializable {
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+	
+	@Override
+	public String toString() {
+		return "Modelo: " + modelo + " - Ano: " + ano + " - Placa: " + placa;
 	}
 
 }
