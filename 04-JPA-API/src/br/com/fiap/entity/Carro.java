@@ -63,6 +63,10 @@ public class Carro implements Serializable {
 		this.foto = foto;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}

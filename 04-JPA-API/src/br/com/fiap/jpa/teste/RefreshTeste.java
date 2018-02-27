@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 import br.com.fiap.entity.Carro;
 
-public class AtualizarTeste {
+public class RefreshTeste {
 
 	public static void main(String[] args) {
 		
@@ -15,19 +15,16 @@ public class AtualizarTeste {
 		
 		Carro carro = em.find(Carro.class, 1);
 		
-		carro.setModelo("Fusca");
-		carro.setAno(1970);
+		carro.setModelo("Gol");
+		carro.setAno(2018);
 		
-		em.getTransaction().begin();
+		em.refresh(carro);
 		
-		// Somente necessário quando objeto não vem do banco de dados.
-		em.merge(carro);
-		
-		em.getTransaction().commit();
+		System.out.println(carro.toString());
 		
 		em.close();
 		f.close();
 		
 	}
 	
-}
+} 

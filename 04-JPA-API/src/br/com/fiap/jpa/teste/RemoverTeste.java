@@ -6,25 +6,22 @@ import javax.persistence.Persistence;
 
 import br.com.fiap.entity.Carro;
 
-public class AtualizarTeste {
+public class RemoverTeste {
 
 	public static void main(String[] args) {
 		
 		EntityManagerFactory f = Persistence.createEntityManagerFactory("oracle");
 		EntityManager em = f.createEntityManager();
-		
-		Carro carro = em.find(Carro.class, 1);
-		
-		carro.setModelo("Fusca");
-		carro.setAno(1970);
+
+		Carro carro = em.find(Carro.class, 22);
+
+		em.remove(carro);
 		
 		em.getTransaction().begin();
-		
-		// Somente necessário quando objeto não vem do banco de dados.
-		em.merge(carro);
-		
 		em.getTransaction().commit();
-		
+
+		System.out.println("Carro encontrado:\n" + carro.toString());
+
 		em.close();
 		f.close();
 		
