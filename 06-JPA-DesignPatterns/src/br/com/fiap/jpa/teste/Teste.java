@@ -1,6 +1,7 @@
 package br.com.fiap.jpa.teste;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 import br.com.fiap.jpa.dao.impl.AlunoDAOImpl;
 import br.com.fiap.jpa.dao.impl.LivroDAOImpl;
@@ -13,7 +14,8 @@ public class Teste {
 	public static void main(String[] args) {
 
 		try {
-			EntityManager em = EntityManagerFactorySingleton.getInstance().createEntityManager();
+			EntityManagerFactory factory = EntityManagerFactorySingleton.getInstance();
+			EntityManager em = factory.createEntityManager();
 			
 			LivroDAOImpl livroDao = new LivroDAOImpl(em);
 			AlunoDAOImpl alunoDao = new AlunoDAOImpl(em); 
@@ -26,6 +28,9 @@ public class Teste {
 			
 			alunoDao.insert(aluno);
 			alunoDao.commit();
+			
+			em.close();
+			factory.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
