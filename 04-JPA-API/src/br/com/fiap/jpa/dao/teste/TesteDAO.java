@@ -18,8 +18,8 @@ public class TesteDAO {
 		EntityManagerFactory f = Persistence.createEntityManagerFactory("oracle");
 		EntityManager em = f.createEntityManager();
 		
-		Carro carro = new Carro("Onix", 2018, "AAA9999", TipoCarro.PASSEIO,
-				new GregorianCalendar(2018, Calendar.JANUARY, 1), null);
+		//Carro carro = new Carro("Onix", 2018, "AAA9999", TipoCarro.PASSEIO,
+			//	new GregorianCalendar(2018, Calendar.JANUARY, 1), null);
 		
 		CarroDAOImpl carroDAOImpl = new CarroDAOImpl(em);
 		
