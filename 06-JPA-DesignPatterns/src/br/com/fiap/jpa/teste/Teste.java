@@ -11,6 +11,7 @@ import br.com.fiap.jpa.singleton.EntityManagerFactorySingleton;
 
 public class Teste {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		try {
@@ -23,11 +24,24 @@ public class Teste {
 			Livro livro = new Livro("Dominando C#", "Leandro Romano");
 			Aluno aluno = new Aluno("RM75244", "Leandro Romano");
 			
+			/* Insert */
 			livroDao.insert(livro);
-			livroDao.commit();
-			
 			alunoDao.insert(aluno);
+			
+			/* Update */
+			alunoDao.update(aluno);
+			livroDao.update(livro);
+			
+			/* Find */
+			Aluno aluno2 = alunoDao.find("RM75244");
+			Livro livro2 = livroDao.find(1);
+			
+			/* Remove */
+			alunoDao.remove("RM75244");
+			livroDao.remove(1);
+			
 			alunoDao.commit();
+			livroDao.commit();
 			
 			em.close();
 			factory.close();
