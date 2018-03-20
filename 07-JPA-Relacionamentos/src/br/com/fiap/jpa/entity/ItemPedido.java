@@ -4,23 +4,29 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Table(name = "T_ITEM_PEDIDO")
-@SequenceGenerator(name = "item_pedido", sequenceName = "SQ_T_ITEM_PEDIDO", allocationSize = 1)
+@SequenceGenerator(name = "item", sequenceName = "SQ_T_ITEM_PEDIDO", allocationSize = 1)
 public class ItemPedido {
 
 	@Id
-	@Column(name = "cd_item_pedido")
-	@GeneratedValue(generator = "item_pedido", strategy = GenerationType.SEQUENCE)
+	@Column(name = "cd_item")
+	@GeneratedValue(generator = "item", strategy = GenerationType.SEQUENCE)
 	private int codigo;
 
-	@Column(name = "ds_item_pedido")
+	@Column(name = "ds_item")
 	private String descricao;
 
-	@Column(name = "vl_item_pedido")
+	@Column(name = "vl_item")
 	private double valor;
+
+	@ManyToOne
+	@JoinColumn(name = "cd_pedido")
+	private Pedido pedido;
 
 	public ItemPedido() {
 		super();
@@ -55,6 +61,14 @@ public class ItemPedido {
 
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 }

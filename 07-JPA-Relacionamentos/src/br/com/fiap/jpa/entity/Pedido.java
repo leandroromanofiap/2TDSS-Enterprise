@@ -1,12 +1,16 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -14,25 +18,33 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="T_PEDIDO")
-@SequenceGenerator(name="pedido",sequenceName="SQ_T_PEDIDO",allocationSize=1)
+@Table(name = "T_PEDIDO")
+@SequenceGenerator(name = "pedido", sequenceName = "SQ_T_PEDIDO", allocationSize = 1)
 public class Pedido {
 
 	@Id
-	@Column(name="cd_pedido")
-	@GeneratedValue(generator="pedido",strategy=GenerationType.SEQUENCE)
+	@Column(name = "cd_pedido")
+	@GeneratedValue(generator = "pedido", strategy = GenerationType.SEQUENCE)
 	private int codigo;
-	
-	@Column(name="dt_pedido",nullable=false)
+
+	@Column(name = "dt_pedido", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;
-	
-	@Column(name="ds_pedido",nullable=false,length=200)
+
+	@Column(name = "ds_pedido", nullable = false, length = 200)
 	private String descricao;
-	
-	@OneToOne(mappedBy="pedido")
+
+	@OneToOne(mappedBy = "pedido")
 	private NotaFiscal nota;
+
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.PERSIST)
+	private List<ItemPedido> itens = new ArrayList<>();
 	
+	public void adicionarItem(ItemPedido item) {
+		item.setPedido(this);
+		itens.add(item);
+	}
+
 	public Pedido(Calendar data, String descricao) {
 		super();
 		this.data = data;
@@ -41,7 +53,6 @@ public class Pedido {
 
 	public Pedido() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getCodigo() {
@@ -75,5 +86,13 @@ public class Pedido {
 	public void setNota(NotaFiscal nota) {
 		this.nota = nota;
 	}
-	
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
 }

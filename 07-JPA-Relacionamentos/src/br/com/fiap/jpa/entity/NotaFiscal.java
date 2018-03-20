@@ -16,24 +16,24 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="T_NOTA_FISCAL")
-@SequenceGenerator(name="nota",sequenceName="SQ_T_NOTA_FISCAL",allocationSize=1)
+@Table(name = "T_NOTA_FISCAL")
+@SequenceGenerator(name = "nota", sequenceName = "SQ_T_NOTA_FISCAL", allocationSize = 1)
 public class NotaFiscal {
 
 	@Id
-	@Column(name="cd_nota_fiscal")
-	@GeneratedValue(generator="nota",strategy=GenerationType.SEQUENCE)
+	@Column(name = "cd_nota_fiscal")
+	@GeneratedValue(generator = "nota", strategy = GenerationType.SEQUENCE)
 	private int codigo;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="dt_nota",nullable=false)
+	@Column(name = "dt_nota", nullable = false)
 	private Calendar data;
-	
-	@Column(name="vl_nota",nullable=false)
+
+	@Column(name = "vl_nota", nullable = false)
 	private double valor;
-	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="cd_pedido")
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "cd_pedido")
 	private Pedido pedido;
 
 	public NotaFiscal() {
@@ -78,5 +78,5 @@ public class NotaFiscal {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	
+
 }
