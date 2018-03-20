@@ -41,8 +41,8 @@ public class Pedido {
 	private List<ItemPedido> itens = new ArrayList<>();
 	
 	public void adicionarItem(ItemPedido item) {
-		item.setPedido(this);
 		itens.add(item);
+		item.setPedido(this);
 	}
 
 	public Pedido(Calendar data, String descricao) {

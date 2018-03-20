@@ -1,6 +1,7 @@
 package br.com.fiap.jpa.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@Entity
 @Table(name = "T_ITEM_PEDIDO")
 @SequenceGenerator(name = "item", sequenceName = "SQ_T_ITEM_PEDIDO", allocationSize = 1)
 public class ItemPedido {
@@ -31,12 +33,16 @@ public class ItemPedido {
 	public ItemPedido() {
 		super();
 	}
-
-	public ItemPedido(int codigo, String descricao, double valor) {
+	
+	public ItemPedido(String descricao, double valor) {
 		super();
-		this.codigo = codigo;
 		this.descricao = descricao;
 		this.valor = valor;
+	}
+
+	public ItemPedido(int codigo, String descricao, double valor) {
+		this(descricao, valor);
+		this.codigo = codigo;
 	}
 
 	public int getCodigo() {
