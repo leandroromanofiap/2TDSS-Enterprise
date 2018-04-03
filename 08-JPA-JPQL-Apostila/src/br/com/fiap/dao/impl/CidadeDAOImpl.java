@@ -23,9 +23,9 @@ public class CidadeDAOImpl extends GenericDAOImpl<Cidade, Integer> implements Ci
 
 	@Override
 	public List<Cidade> buscarPorNome(String nome) {
-		TypedQuery<Cidade> query = em.createQuery("from Cidade c where c.nome = :nomeCidade", Cidade.class);
-		query.setParameter("nomeCidade", nome);
-		
+		TypedQuery<Cidade> query = em.createQuery("from Cidade c where c.nome like :nomeCidade", Cidade.class);
+		query.setParameter("nomeCidade", "%" + nome + "%");
+
 		return query.getResultList();
 	}
 
