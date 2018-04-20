@@ -8,5 +8,7 @@ import br.com.fiap.entity.Pacote;
 public interface PacoteDAO extends GenericDAO<Pacote, Integer> {
 
 	List<Pacote> buscarPorData(Calendar inicio, Calendar fim);
+	
+	long contarPorTransporte();
 
 }

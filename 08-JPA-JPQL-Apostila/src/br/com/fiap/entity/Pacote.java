@@ -9,37 +9,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQuery(name = "Pacote.contarPorTransporte", query = "select count(p) from Pacote p where p.transporte is not null")
+
 @Entity
-@Table(name="JPA_T_PACOTE")
-@SequenceGenerator(name="seqPacote", sequenceName="SEQ_JPA_T_PACOTE", allocationSize=1)
+@Table(name = "JPA_T_PACOTE")
+@SequenceGenerator(name = "seqPacote", sequenceName = "SEQ_JPA_T_PACOTE", allocationSize = 1)
 public class Pacote {
 
 	@Id
-	@Column(name="cd_pacote")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqPacote")
+	@Column(name = "cd_pacote")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPacote")
 	private int id;
-	
-	@Column(nullable=false,name="ds_pacote")
+
+	@Column(nullable = false, name = "ds_pacote")
 	private String descricao;
-	
-	@Column(name="dt_saida",nullable=false)
+
+	@Column(name = "dt_saida", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataSaida;
-	
-	@Column(name="nr_dias")
+
+	@Column(name = "nr_dias")
 	private int qtdDias;
-	
-	@Column(name="vl_pacote")
+
+	@Column(name = "vl_pacote")
 	private float preco;
-	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Transporte transporte;
-	
+
 	public Pacote(String descricao, Calendar dataSaida, int qtdDias, float preco, Transporte transporte) {
 		super();
 		this.descricao = descricao;
@@ -48,7 +51,7 @@ public class Pacote {
 		this.transporte = transporte;
 		this.preco = preco;
 	}
-	
+
 	public Pacote() {
 	}
 

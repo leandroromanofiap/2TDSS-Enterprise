@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import br.com.fiap.dao.PacoteDAO;
 import br.com.fiap.entity.Pacote;
 
-public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements PacoteDAO{
+public class PacoteDAOImpl extends GenericDAOImpl<Pacote, Integer> implements PacoteDAO {
 
 	public PacoteDAOImpl(EntityManager entityManager) {
 		super(entityManager);
@@ -17,9 +17,12 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 	@Override
 	public List<Pacote> buscarPorData(Calendar inicio, Calendar fim) {
 		return em.createQuery("from Pacote p where p.dataSaida between :i and :f", Pacote.class)
-				.setParameter("i", inicio)
-				.setParameter("f", fim)
-				.getResultList();
+				.setParameter("i", inicio).setParameter("f", fim).getResultList();
+	}
+
+	@Override
+	public long contarPorTransporte() {
+		return em.createNamedQuery("Pacote.contarPorTransporte", Long.class).getSingleResult();
 	}
 
 }

@@ -38,6 +38,10 @@ public class ConsoleView {
 		for(Pacote pacote : pacotes)
 			System.out.println(pacote.getDescricao());
 		
+		
+		long contarPorPacote = pacoteDao.contarPorTransporte();
+		System.out.println("Pacotes com transporte: " + contarPorPacote);
+		
 		em.close();
 		fabrica.close();
 		
