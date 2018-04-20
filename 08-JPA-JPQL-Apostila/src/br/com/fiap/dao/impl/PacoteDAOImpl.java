@@ -25,4 +25,11 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote, Integer> implements Pa
 		return em.createNamedQuery("Pacote.contarPorTransporte", Long.class).getSingleResult();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Pacote> buscarPorDestino(String destino) {
+		return em.createNativeQuery("SELECT * FROM JPA_T_PACOTE where ds_pacote like :d", Pacote.class)
+				.setParameter("d", "%" + destino + "%").getResultList();
+	}
+
 }
