@@ -21,24 +21,28 @@ public class Consulta {
 	@Id
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "nr_crm")
-	public Medico medico;
+	private Medico medico;
 
 	@Id
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_paciente")
-	public Paciente paciente;
+	private Paciente paciente;
 
 	@Id
 	@Column(name = "dt_consulta")
 	@Temporal(TemporalType.TIMESTAMP)
-	public Calendar data;
+	private Calendar data;
 
 	@Column(name = "ds_consultorio")
-	public String consultorio;
+	private String consultorio;
 
 	@Column(name = "st_convenio")
-	public boolean convenio;
+	private boolean convenio;
 
+	public Consulta() {
+		
+	}
+	
 	public Consulta(Medico medico, Paciente paciente, Calendar dataConsulta, String consultorio,
 			boolean statusConvenio) {
 		super();
