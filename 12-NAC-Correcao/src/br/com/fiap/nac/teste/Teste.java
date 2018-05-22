@@ -17,6 +17,7 @@ public class Teste {
 
 		Cliente cliente = new Cliente("Teste", Calendar.getInstance(), Sexo.FEMININO);
 		
+		
 		em.close();
 		f.close();
 	}
